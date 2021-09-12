@@ -1,21 +1,16 @@
-.biorhythm-header {
+.mono {
+  font-size: 0.7rem;
   font-family: monospace;
+}
+
+.biorhythm-header {
   font-size: 0.7rem;
   margin-bottom: 0.7rem;
 }
 
-.biorhythm-table {
-  font-family: monospace;
-  font-size: 0.7rem;
-}
-
-.biorhythm-table td {
-  padding-right: 0.2rem;
-}
-
 .biorhythm-graph {
-  font-family: monospace;
   font-size: 0.3rem;
+  margin-top: 0.7rem;
 }
 
 .biorhythm-physical {
@@ -32,4 +27,8 @@
 
 .biorhythm-divisor {
   background-color: aqua;
+}
+
+.right-pad {
+  margin-right: 0.2rem;
 }

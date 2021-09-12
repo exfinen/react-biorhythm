@@ -111,28 +111,24 @@ export const Biorhythm = (props: BiorhythmProps) => {
 
   return (
     <>
-      <div className="biorhythm-header">
+      <div className="mono biorhythm-header">
         <div>Birthday: {birthday.format("YYYY-MM-DD")}</div>
         <div>Days since birth: {days}</div>
       </div>
 
-      <table className="biorhythm-table">
-        <tbody>
-          <tr>
-            <td className="biorhythm-physical">Physical</td>
-            <td className="biorhythm-physical">{f(Period.Physical).toFixed(2)}%</td>
-          </tr>
-          <tr>
-            <td className="biorhythm-emotional">Emotional</td>
-            <td className="biorhythm-emotional">{f(Period.Emotinoal).toFixed(2)}%</td>
-          </tr>
-          <tr>
-            <td className="biorhythm-intellectual">Intellectual</td>
-            <td className="biorhythm-intellectual">{f(Period.Intellectual).toFixed(2)}%</td>
-          </tr>
-        </tbody>
-      </table>
-      <div className="biorhythm-graph">
+      <div>
+        <span className="mono biorhythm-physical right-pad">Physical:</span>
+        <span className="mono biorhythm-physical">{f(Period.Physical).toFixed(2)}%</span>
+      </div>
+      <div>
+        <span className="mono biorhythm-emotional right-pad">Emotional:</span>
+        <span className="mono biorhythm-emotional">{f(Period.Emotinoal).toFixed(2)}%</span>
+      </div>
+      <div>
+        <span className="mono biorhythm-intellectual right-pad">Intellectual:</span>
+        <span className="mono biorhythm-intellectual">{f(Period.Intellectual).toFixed(2)}%</span>
+      </div>
+      <div className="mono biorhythm-graph">
         {graph}
       </div>
     </>
