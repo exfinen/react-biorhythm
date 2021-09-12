@@ -64,24 +64,24 @@ const drawGraph = (
       if (y === Math.floor(props.height / 2)) {
         return <span>-</span>
       } else {
+        let additionalCss = ""
         if (i === Math.floor(props.daysBeforeToday * screenRatio)) {
-          return <span className="biorhythm-divisor">&nbsp;</span>
+          additionalCss = "biorhythm-divisor"
+        }
+        // if the point has multiple rhythms, pick up the one w/ the largest mask
+        if (x !== 0 && x !== physical && x !== emotional && x !== intellectual) {
+          x = Math.max(Math.max(Math.max(x, physical), emotional), intellectual)
+        }
+        if (x === 0) {
+          return <span className={additionalCss}>&nbsp;</span>
+        }
+        else if (x === physical) {
+          return <span className={`biorhythm-physical ${additionalCss}`}>X</span>
+        }
+        else if (x === emotional) {
+          return <span className={`biorhythm-emotional ${additionalCss}`}>O</span>
         } else {
-          // if the point has multiple rhythms, pick up the one w/ the largest mask
-          if (x !== 0 && x !== physical && x !== emotional && x !== intellectual) {
-            x = Math.max(Math.max(Math.max(x, physical), emotional), intellectual)
-          }
-          if (x === 0) {
-            return <span>&nbsp;</span>
-          }
-          else if (x === physical) {
-            return <span className="biorhythm-physical">X</span>
-          }
-          else if (x === emotional) {
-            return <span className="biorhythm-emotional">O</span>
-          } else {
-            return <span className="biorhythm-intellectual">*</span>
-          }
+          return <span className={`biorhythm-intellectual ${additionalCss}`}>*</span>
         }
       }
     })

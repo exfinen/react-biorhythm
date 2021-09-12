@@ -1,6 +1,6 @@
 # react-biorhythm
 
-Fun React component to display a biorhythm graph on screen
+A fun React component to display a biorhythm graph on screen
 
 ![screenshot](./screenshot.png)
 
@@ -18,7 +18,7 @@ Fun React component to display a biorhythm graph on screen
 
 ## Formula used
 ```
-rhythm = sin(2pi*t*T)
+rhythm = sin(2*PI*t*T)
 ```
 
 where T is the period of one of the below cycles
