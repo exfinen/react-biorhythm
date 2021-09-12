@@ -29,7 +29,10 @@ where T is the period of one of the below cycles
 | 28 | Emotional |
 | 33 | Intellectual |
 
-and t is the number of days since birth i.e. t = today - birthday
+and t is the number of days since birth i.e.
+```
+t = today - birthday
+```
 
 ## Wiki
 https://en.wikipedia.org/wiki/Biorhythm_(pseudoscience)
