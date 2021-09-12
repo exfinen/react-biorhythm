@@ -2,11 +2,21 @@ import dayjs from "dayjs"
 import "../public/style.css"
 
 export interface BiorhythmProps {
-  birthday: Date,
-  width: number,
-  height: number,
-  daysBeforeToday: number,
-  daysAfterToday: number,
+  birthday?: Date,
+  width?: number,
+  height?: number,
+  daysBeforeToday?: number,
+  daysAfterToday?: number,
+}
+
+const defaultProps = (birthday: Date): Required<BiorhythmProps> => {
+  return {
+    birthday,
+    width: 100,
+    height: 50,
+    daysBeforeToday: 20,
+    daysAfterToday: 30,
+  }
 }
 
 enum Period {
@@ -21,11 +31,18 @@ const getMask = (period: Period): number => {
   else return 4
 }
 
+const genRandomBirthday = (): Date => {
+  const random = (n: number) => Math.floor(Math.random() * n)
+  const year = 1920 + random(100)
+  const month = random(12)
+  const day = random(28)
+  return new Date(year, month, day)
+}
+
 const drawGraph = (
-  props: BiorhythmProps,
+  props: Required<BiorhythmProps>,
   daysSinceBirth: number,
 ) => {
-
   const begX = daysSinceBirth - props.daysBeforeToday
   const endX = daysSinceBirth + props.daysAfterToday
 
@@ -62,7 +79,7 @@ const drawGraph = (
 
     const line = xs.map((x, i) => {
       if (y === Math.floor(props.height / 2)) {
-        return <span>-</span>
+        return <span key={i}>-</span>
       } else {
         let additionalCss = ""
         if (i === Math.floor(props.daysBeforeToday * screenRatio)) {
@@ -73,33 +90,37 @@ const drawGraph = (
           x = Math.max(Math.max(Math.max(x, physical), emotional), intellectual)
         }
         if (x === 0) {
-          return <span className={additionalCss}>&nbsp;</span>
+          return <span key={i} className={additionalCss}>&nbsp;</span>
         }
         else if (x === physical) {
-          return <span className={`biorhythm-physical ${additionalCss}`}>X</span>
+          return <span key={i} className={`biorhythm-physical ${additionalCss}`}>X</span>
         }
         else if (x === emotional) {
-          return <span className={`biorhythm-emotional ${additionalCss}`}>O</span>
+          return <span key={i} className={`biorhythm-emotional ${additionalCss}`}>O</span>
         } else {
-          return <span className={`biorhythm-intellectual ${additionalCss}`}>*</span>
+          return <span key={i} className={`biorhythm-intellectual ${additionalCss}`}>*</span>
         }
       }
     })
     lines[y] = line
   }
 
-  const charScreen = lines.map(line => <div>|{line}|</div>)
+  const charScreen = lines.map((line, i) => <div key={`l${i+1}`}>|{line}|</div>)
 
   return (
     <div>
-      <div>{"-".repeat(props.width + 2)}</div>
+      <div key={`l0`}>{"-".repeat(props.width + 2)}</div>
       {charScreen}
-      <div>{"-".repeat(props.width + 2)}</div>
+      <div key={`l${lines.length + 1}`}>{"-".repeat(props.width + 2)}</div>
     </div>
   )
 }
 
-export const Biorhythm = (props: BiorhythmProps) => {
+export const Biorhythm = (propsOverride: BiorhythmProps) => {
+  const props: Required<BiorhythmProps> = {
+    ...defaultProps(genRandomBirthday()),
+    ...propsOverride,
+  }
   const birthday = dayjs(props.birthday)
   const today = dayjs()
 

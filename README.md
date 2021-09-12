@@ -8,11 +8,11 @@ A fun React component to display a biorhythm graph on screen
 
 ```typescript
 <Biorhythm
-  birthday={birthday}
-  width={100}  // character width of the chart
-  height={50}  // character height of the chart
-  daysBeforeToday={20}  // days to show before today in chart
-  daysAfterToday={30}  // days to show after today in chart
+  birthday={birthday}  // (Optional)
+  width={100}  // character width of the chart (Optional)
+  height={50}  // character height of the chart (Optional)
+  daysBeforeToday={20}  // days to show before today in chart (Optional)
+  daysAfterToday={30}  // days to show after today in chart (Optional)
 />
 ```
 
