@@ -2,6 +2,8 @@
 
 Fun component to show a biorhythm graph
 
+![screenshot](./screenshot.png)
+
 ## Usage
 
 ```typescript
@@ -15,7 +17,9 @@ Fun component to show a biorhythm graph
 ```
 
 ## Formula used
-<img src="https://latex.codecogs.com/gif.latex?\sin (\frac{2{\pi}t}{T})" />
+```
+rhythm = sin(2pi*t*T)
+```
 
 where T is the period of one of the below cycles
 
