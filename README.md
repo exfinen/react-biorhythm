@@ -1,6 +1,6 @@
 # react-biorhythm
 
-Fun component to show a biorhythm graph
+Fun React component to display a biorhythm graph on screen
 
 ![screenshot](./screenshot.png)
 
