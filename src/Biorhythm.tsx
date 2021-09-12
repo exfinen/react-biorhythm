@@ -2,11 +2,11 @@ import dayjs from "dayjs"
 import "../public/style.css"
 
 export interface BiorhythmProps {
-  birthday?: Date,
-  width?: number,
-  height?: number,
-  daysBeforeToday?: number,
-  daysAfterToday?: number,
+  birthday: Date,
+  width: number,
+  height: number,
+  daysBeforeToday: number,
+  daysAfterToday: number,
 }
 
 const defaultProps = (birthday: Date): Required<BiorhythmProps> => {
@@ -40,7 +40,7 @@ const genRandomBirthday = (): Date => {
 }
 
 const drawGraph = (
-  props: Required<BiorhythmProps>,
+  props: BiorhythmProps,
   daysSinceBirth: number,
 ) => {
   const begX = daysSinceBirth - props.daysBeforeToday
@@ -116,8 +116,8 @@ const drawGraph = (
   )
 }
 
-export const Biorhythm = (propsOverride: BiorhythmProps) => {
-  const props: Required<BiorhythmProps> = {
+export const Biorhythm = (propsOverride: Partial<BiorhythmProps>) => {
+  const props: BiorhythmProps = {
     ...defaultProps(genRandomBirthday()),
     ...propsOverride,
   }
